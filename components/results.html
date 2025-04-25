@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résultats - Switch2Green</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <!-- Include Header -->
+    <div id="header">
+        <!-- Header content will be dynamiquement loaded -->
+    </div>
+
+    <main>
+        <section class="resultats">
+            <h1>Résultats de votre recherche</h1>
+            <p>Voici les véhicules qui correspondent à vos critères :</p>
+            <div id="resultats">
+                <!-- Les résultats seront ajoutés ici dynamiquement -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Include Footer -->
+    <div id="footer">
+        <!-- Footer content will be dynamiquement loaded -->
+    </div>
+
+    <script>
+        // Charger le header et le footer
+        fetch('../components/header.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('header').innerHTML = data);
+
+        fetch('../components/footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+
+        // Charger les résultats depuis le localStorage
+        document.addEventListener('DOMContentLoaded', () => {
+            const resultats = JSON.parse(localStorage.getItem('resultats')) || [];
+            const resultatsContainer = document.getElementById('resultats');
+
+            if (resultats.length === 0) {
+                resultatsContainer.innerHTML = '<p>Aucun véhicule ne correspond à vos critères.</p>';
+            } else {
+                const liste = document.createElement('ul');
+                resultats.forEach(vehicule => {
+                    const item = document.createElement('li');
+                    item.textContent = `${vehicule.nom} - ${vehicule.energie}, ${vehicule.puissance} chevaux, ${vehicule.gabarit}, ${vehicule.gamme}`;
+                    liste.appendChild(item);
+                });
+                resultatsContainer.appendChild(liste);
+            }
+        });
+    </script>
+</body>
+</html>

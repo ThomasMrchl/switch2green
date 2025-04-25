@@ -16,7 +16,7 @@
         <section class="questionnaire">
             <h1>Questionnaire</h1>
             <p>Répondez aux questions ci-dessous pour découvrir le véhicule le plus écologique adapté à vos besoins.</p>
-            <form action="resultats.html" method="POST">
+            <form id="questionnaireForm">
                 <!-- Type d'énergie -->
                 <label for="energie">Quel type d'énergie recherchez-vous ?</label>
                 <select id="energie" name="energie" required>
@@ -61,15 +61,6 @@
         <!-- Footer content will be dynamically loaded -->
     </div>
 
-    <script>
-        // Dynamically load header and footer
-        fetch('./header.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('header').innerHTML = data);
-
-        fetch('./footer.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('footer').innerHTML = data);
-    </script>
+    <script src="../js/recommandation.js"></script>
 </body>
 </html>

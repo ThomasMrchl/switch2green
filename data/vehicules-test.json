@@ -1,0 +1,30 @@
+[
+    {
+        "nom": "Tesla Model 3",
+        "energie": "electrique",
+        "puissance": 283,
+        "gabarit": "berline",
+        "gamme": "superieur"
+    },
+    {
+        "nom": "Renault Clio",
+        "energie": "essence",
+        "puissance": 90,
+        "gabarit": "berline",
+        "gamme": "moy-inferieur"
+    },
+    {
+        "nom": "Toyota Prius",
+        "energie": "hybride",
+        "puissance": 122,
+        "gabarit": "berline",
+        "gamme": "moy-superieur"
+    },
+    {
+        "nom": "BMW X5",
+        "energie": "diesel",
+        "puissance": 286,
+        "gabarit": "ts",
+        "gamme": "luxe"
+    }
+]
