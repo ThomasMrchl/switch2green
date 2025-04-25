@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Switch2Green</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Include Header -->
+    <div id="header">
+        <!-- Header content will be dynamically loaded -->
+    </div>
+
+    <main>
+        <section class="hero">
+            <h1>Bienvenue sur Switch2Green</h1>
+            <p>Découvrez le véhicule le plus écologique adapté à vos besoins.</p>
+            <button onclick="location.href='components/form.html'">Commencer le questionnaire</button>
+        </section>
+    </main>
+
+    <!-- Include Footer -->
+    <div id="footer">
+        <!-- Footer content will be dynamically loaded -->
+    </div>
+
+    <script>
+        // Dynamically load header and footer
+        fetch('components/header.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('header').innerHTML = data);
+
+        fetch('components/footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+    </script>
+</body>
+</html>

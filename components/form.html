@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnaire - Switch2Green</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <!-- Include Header -->
+    <div id="header">
+        <!-- Header content will be dynamically loaded -->
+    </div>
+
+    <main>
+        <section class="questionnaire">
+            <h1>Questionnaire</h1>
+            <p>Répondez aux questions ci-dessous pour découvrir le véhicule le plus écologique adapté à vos besoins.</p>
+            <form action="resultats.html" method="POST">
+                <!-- Type d'énergie -->
+                <label for="energie">Quel type d'énergie recherchez-vous ?</label>
+                <select id="energie" name="energie" required>
+                    <option value="essence">Essence</option>
+                    <option value="diesel">Diesel</option>
+                    <option value="hybride">Hybride</option>
+                    <option value="electrique">Électrique</option>
+                </select>
+
+                <!-- Puissance minimale -->
+                <label for="puissance">Quelle puissance minimale recherchez-vous ? (en chevaux)</label>
+                <input type="number" id="puissance" name="puissance" min="50" max="1000" required>
+
+                <!-- Gabarit du véhicule -->
+                <label for="gabarit">Quel gabarit de véhicule vous convient le mieux ?</label>
+                <select id="gabarit" name="gabarit" required>
+                    <option value="break">Break</option>
+                    <option value="berline">Berline</option>
+                    <option value="coupe">Coupé</option>
+                    <option value="cabriolet">Cabriolet</option>
+                    <option value="ts">TS Terrains/Chemins</option>
+                </select>
+
+                <!-- Gamme de véhicule -->
+                <label for="gamme">Quelle gamme de véhicule recherchez-vous ?</label>
+                <select id="gamme" name="gamme" required>
+                    <option value="moy-inferieur">Moyen Inférieur</option>
+                    <option value="moy-superieur">Moyen Supérieur</option>
+                    <option value="luxe">Luxe</option>
+                    <option value="inferieur">Inférieur</option>
+                    <option value="superieur">Supérieur</option>
+                </select>
+
+                <!-- Submit Button -->
+                <button type="submit">Soumettre</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Include Footer -->
+    <div id="footer">
+        <!-- Footer content will be dynamically loaded -->
+    </div>
+
+    <script>
+        // Dynamically load header and footer
+        fetch('./header.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('header').innerHTML = data);
+
+        fetch('./footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+    </script>
+</body>
+</html>
