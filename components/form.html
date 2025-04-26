@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Questionnaire - Switch2Green</title>
+    <title>Questions - Switch2Green</title>
     <link rel="stylesheet" href="../css/styles.css">
     <style>
         .questionnaire {
@@ -88,55 +88,53 @@
 <body>
     <!-- Include Header -->
     <div id="header">
-        <!-- Header content will be dynamically loaded -->
     </div>
 
     <main>
         <section class="questionnaire">
-            <h1>Questionnaire</h1>
+            <h1>Questions</h1>
             <p>Répondez aux questions ci-dessous pour découvrir le véhicule le plus écologique adapté à vos besoins.</p>
             <form id="questionnaireForm">
                 <!-- Type d'énergie -->
-                <label for="energie">Quel type d'énergie recherchez-vous ?</label>
+                <label for="energie">What kind of energy are you looking for?</label>
                 <select id="energie" name="energie" required>
-                    <option value="Essence">Essence</option>
+                    <option value="Essence">Gasoline</option>
                     <option value="Diesel">Diesel</option>
-                    <option value="Hybride">Hybride / Electrique</option>
+                    <option value="Hybride">Hybride / Electric</option>
                 </select>
 
                 <!-- Puissance minimale -->
-                <label for="puissance">Quelle puissance minimale recherchez-vous ? (en chevaux)</label>
+                <label for="puissance">What is the minimum power you are looking for? (in hp)</label>
                 <input type="number" id="puissance" name="puissance" min="50" max="1000" required>
 
                 <!-- Gabarit du véhicule -->
-                <label for="gabarit">Quel gabarit de véhicule vous convient le mieux ?</label>
+                <label for="gabarit">Which vehicle size is best for you?</label>
                 <select id="gabarit" name="gabarit" required>
                     <option value="BREAK">Break</option>
                     <option value="BERLINE">Berline</option>
                     <option value="COUPE">Coupé</option>
                     <option value="CABRIOLET">Cabriolet</option>
-                    <option value="TS TERRAINS/CHEMINS">TS Terrains/Chemins</option>
+                    <option value="TS TERRAINS/CHEMINS">Off-road / 4x4</option>
                 </select>
 
                 <!-- Gamme de véhicule -->
-                <label for="gamme">Quelle gamme de véhicule recherchez-vous ?</label>
+                <label for="gamme">What range of vehicle prices are you looking for?</label>
                 <select id="gamme" name="gamme" required>
-                    <option value="MOY-INFER">Moyen Inférieur</option>
-                    <option value="MOY-SUPER">Moyen Supérieur</option>
+                    <option value="MOY-INFER">Average Lower</option>
+                    <option value="MOY-SUPER">Average Upper</option>
                     <option value="LUXE">Luxe</option>
-                    <option value="INFERIEURE">Inférieur</option>
-                    <option value="SUPERIEURE">Supérieur</option>
+                    <option value="INFERIEURE">Lower</option>
+                    <option value="SUPERIEURE">Upper</option>
                 </select>
 
                 <!-- Submit Button -->
-                <button type="submit">Soumettre</button>
+                <button type="submit">Submit</button>
             </form>
         </section>
     </main>
 
     <!-- Include Footer -->
     <div id="footer">
-        <!-- Footer content will be dynamically loaded -->
     </div>
 
     <script src="../js/recommandation.js"></script>
