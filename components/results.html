@@ -48,7 +48,7 @@
                 const liste = document.createElement('ul');
                 resultats.forEach(vehicule => {
                     const item = document.createElement('li');
-                    item.textContent = `${vehicule.nom} - ${vehicule.energie}, ${vehicule.puissance} chevaux, ${vehicule.gabarit}, ${vehicule.gamme}`;
+                    item.textContent = `${vehicule.marque + " " + vehicule.modele_dossier} - ${vehicule.carburant}, ${vehicule.puissance_maximale} chevaux, ${vehicule.carrosserie}, ${vehicule.gamme}, ${vehicule.co2_g_km} g de CO2`;
                     liste.appendChild(item);
                 });
                 resultatsContainer.appendChild(liste);

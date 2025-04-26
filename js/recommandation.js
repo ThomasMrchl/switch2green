@@ -2,7 +2,7 @@
 async function chargerVehicules() {
     try {
         console.log('Tentative de chargement des données des véhicules...');
-        const response = await fetch('../data/vehicules-test.json'); // Assurez-vous que le chemin est correct
+        const response = await fetch('../data/vehicules.json');
         if (!response.ok) {
             throw new Error(`Erreur HTTP : ${response.status}`);
         }
@@ -18,15 +18,19 @@ async function chargerVehicules() {
 // Fonction pour filtrer les véhicules
 function filtrerVehicules(vehicules, reponses) {
     console.log('Filtrage des véhicules avec les réponses utilisateur :', reponses);
-    const resultats = vehicules.filter(vehicule => {
+    let resultats = vehicules.filter(vehicule => {
         return (
-            vehicule.energie === reponses.energie &&
-            vehicule.puissance >= reponses.puissance &&
-            vehicule.gabarit === reponses.gabarit &&
+            (reponses.energie === "Hybride" ? vehicule.hybride === "Hybride" : vehicule.carburant === reponses.energie) &&
+            vehicule.puissance_maximale >= reponses.puissance &&
+            vehicule.carrosserie === reponses.gabarit &&
             vehicule.gamme === reponses.gamme
         );
     });
-    console.log('Véhicules correspondant aux critères :', resultats);
+
+    // Trier les résultats par consommation de CO2 (du plus petit au plus grand)
+    resultats.sort((a, b) => Number(a.co2_g_km) - Number(b.co2_g_km));
+
+    console.log('Véhicules correspondant aux critères (triés par CO2) :', resultats);
     return resultats;
 }
 
@@ -46,6 +50,11 @@ document.getElementById('questionnaireForm').addEventListener('submit', async fu
 
     // Charger les véhicules et effectuer la recommandation
     const vehicules = await chargerVehicules();
+    console.log('Véhicules chargés :', vehicules);
+    if (vehicules.length === 0) {
+        console.error('Aucun véhicule disponible pour la recommandation.');
+        return;
+    }
     const resultats = filtrerVehicules(vehicules, reponses);
 
     // Afficher les résultats
@@ -66,7 +75,7 @@ function afficherResultats(resultats) {
         const liste = document.createElement('ul');
         resultats.forEach(vehicule => {
             const item = document.createElement('li');
-            item.textContent = `${vehicule.nom} - ${vehicule.energie}, ${vehicule.puissance} chevaux, ${vehicule.gabarit}, ${vehicule.gamme}`;
+            item.textContent = `${vehicule.marque + " " + vehicule.modele_dossier} - ${vehicule.carburant}, ${vehicule.puissance_maximale} chevaux, ${vehicule.carrosserie}, ${vehicule.gamme}, ${vehicule.co2_g_km} g de CO2`;
             liste.appendChild(item);
         });
         resultatsContainer.appendChild(liste);
