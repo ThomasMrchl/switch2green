@@ -5,6 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Questionnaire - Switch2Green</title>
     <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .questionnaire {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .questionnaire h1 {
+            color: #2e7d32;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+        }
+
+        .questionnaire p {
+            color: #4caf50;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        #questionnaireForm {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        #questionnaireForm label {
+            color: #1b5e20;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        #questionnaireForm select,
+        #questionnaireForm input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #c8e6c9;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            background-color: #f1f8e9;
+        }
+
+        #questionnaireForm select:focus,
+        #questionnaireForm input:focus {
+            outline: none;
+            border-color: #4caf50;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+
+        #questionnaireForm button {
+            background-color: #4caf50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        #questionnaireForm button:hover {
+            background-color: #388e3c;
+        }
+
+        @media (max-width: 768px) {
+            .questionnaire {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Include Header -->

@@ -6,29 +6,126 @@
     <title>Résultats - Switch2Green</title>
     <link rel="stylesheet" href="../css/styles.css">
     <style>
-        /* Styles pour le tableau */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 1em;
-            font-family: Arial, sans-serif;
-            text-align: left;
+        .resultats {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
         }
-        table thead tr {
-            background-color: #009879;
-            color: #ffffff;
-            text-align: left;
+
+        .resultats h1 {
+            color: #2e7d32;
+            text-align: center;
+            margin-bottom: 1rem;
         }
-        table th, table td {
-            padding: 12px 15px;
-            border: 1px solid #dddddd;
+
+        .resultats > p {
+            color: #4caf50;
+            text-align: center;
+            margin-bottom: 2rem;
         }
-        table tbody tr:nth-child(even) {
-            background-color: #f3f3f3;
+
+        .vehicules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
-        table tbody tr:hover {
-            background-color: #f1f1f1;
+
+        .vehicule-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vehicule-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .vehicule-card.most-eco {
+            border: 3px solid #4caf50;
+            background: linear-gradient(135deg, #ffffff 0%, #f1f8e9 100%);
+        }
+
+        .vehicule-card.most-eco::before {
+            content: "🌟 Meilleur choix écologique";
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #4caf50;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0 0 0 15px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .vehicule-card h3 {
+            color: #2e7d32;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .vehicule-info {
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .vehicule-info p {
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .vehicule-info p span:first-child {
+            font-weight: 600;
+            color: #2e7d32;
+        }
+
+        .co2-indicator {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .co2-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2e7d32;
+        }
+
+        .eco-rating {
+            display: flex;
+            gap: 0.3rem;
+        }
+
+        .eco-rating span {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #e0e0e0;
+        }
+
+        .eco-rating span.active {
+            background: #4caf50;
+        }
+
+        @media (max-width: 768px) {
+            .vehicules-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .resultats {
+                padding: 1rem;
+            }
         }
     </style>
 </head>
@@ -42,7 +139,7 @@
         <section class="resultats">
             <h1>Résultats de votre recherche</h1>
             <p>Voici les véhicules qui correspondent à vos critères :</p>
-            <div id="resultats">
+            <div id="resultats" class="vehicules-grid">
                 <!-- Les résultats seront ajoutés ici dynamiquement -->
             </div>
         </section>
@@ -71,45 +168,38 @@
             if (resultats.length === 0) {
                 resultatsContainer.innerHTML = '<p>Aucun véhicule ne correspond à vos critères.</p>';
             } else {
-                // Créer un tableau pour afficher les résultats
-                const table = document.createElement('table');
-                const thead = document.createElement('thead');
-                const tbody = document.createElement('tbody');
+                // Trier les résultats par CO2 (du plus faible au plus élevé)
+                resultats.sort((a, b) => a.co2_g_km - b.co2_g_km);
 
-                // Ajouter les en-têtes du tableau
-                thead.innerHTML = `
-                    <tr>
-                        <th>Marque</th>
-                        <th>Modèle</th>
-                        <th>Année</th>
-                        <th>Carburant</th>
-                        <th>Puissance (chevaux)</th>
-                        <th>Carrosserie</th>
-                        <th>Gamme</th>
-                        <th>CO2 (g/km)</th>
-                    </tr>
-                `;
-
-                // Ajouter les lignes des résultats
-                resultats.forEach(vehicule => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${vehicule.marque}</td>
-                        <td>${vehicule.modele_dossier}</td>
-                        <td>${vehicule.annee}</td>
-                        <td>${vehicule.carburant}</td>
-                        <td>${vehicule.puissance_maximale}</td>
-                        <td>${vehicule.carrosserie}</td>
-                        <td>${vehicule.gamme}</td>
-                        <td>${vehicule.co2_g_km}</td>
+                resultats.forEach((vehicule, index) => {
+                    const card = document.createElement('div');
+                    card.className = `vehicule-card ${index === 0 ? 'most-eco' : ''}`;
+                    
+                    // Calculer le rating écologique (1-5 étoiles)
+                    const maxCO2 = Math.max(...resultats.map(v => v.co2_g_km));
+                    const minCO2 = Math.min(...resultats.map(v => v.co2_g_km));
+                    const ecoRating = Math.ceil(5 - ((vehicule.co2_g_km - minCO2) / (maxCO2 - minCO2)) * 4);
+                    
+                    card.innerHTML = `
+                        <h3>${vehicule.marque} ${vehicule.modele_dossier}</h3>
+                        <div class="vehicule-info">
+                            <p><span>Année:</span> ${vehicule.annee}</p>
+                            <p><span>Carburant:</span> ${vehicule.carburant}</p>
+                            <p><span>Puissance:</span> ${vehicule.puissance_maximale} ch</p>
+                            <p><span>Carrosserie:</span> ${vehicule.carrosserie}</p>
+                            <p><span>Gamme:</span> ${vehicule.gamme}</p>
+                        </div>
+                        <div class="co2-indicator">
+                            <span class="co2-value">${vehicule.co2_g_km} g/km</span>
+                            <div class="eco-rating">
+                                ${Array(5).fill().map((_, i) => 
+                                    `<span class="${i < ecoRating ? 'active' : ''}"></span>`
+                                ).join('')}
+                            </div>
+                        </div>
                     `;
-                    tbody.appendChild(row);
+                    resultatsContainer.appendChild(card);
                 });
-
-                // Assembler le tableau
-                table.appendChild(thead);
-                table.appendChild(tbody);
-                resultatsContainer.appendChild(table);
             }
         });
     </script>
