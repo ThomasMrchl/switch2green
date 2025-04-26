@@ -5,6 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Résultats - Switch2Green</title>
     <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        /* Styles pour le tableau */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 1em;
+            font-family: Arial, sans-serif;
+            text-align: left;
+        }
+        table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+        }
+        table th, table td {
+            padding: 12px 15px;
+            border: 1px solid #dddddd;
+        }
+        table tbody tr:nth-child(even) {
+            background-color: #f3f3f3;
+        }
+        table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
 </head>
 <body>
     <!-- Include Header -->
@@ -45,13 +71,45 @@
             if (resultats.length === 0) {
                 resultatsContainer.innerHTML = '<p>Aucun véhicule ne correspond à vos critères.</p>';
             } else {
-                const liste = document.createElement('ul');
+                // Créer un tableau pour afficher les résultats
+                const table = document.createElement('table');
+                const thead = document.createElement('thead');
+                const tbody = document.createElement('tbody');
+
+                // Ajouter les en-têtes du tableau
+                thead.innerHTML = `
+                    <tr>
+                        <th>Marque</th>
+                        <th>Modèle</th>
+                        <th>Année</th>
+                        <th>Carburant</th>
+                        <th>Puissance (chevaux)</th>
+                        <th>Carrosserie</th>
+                        <th>Gamme</th>
+                        <th>CO2 (g/km)</th>
+                    </tr>
+                `;
+
+                // Ajouter les lignes des résultats
                 resultats.forEach(vehicule => {
-                    const item = document.createElement('li');
-                    item.textContent = `${vehicule.marque + " " + vehicule.modele_dossier} - ${vehicule.carburant}, ${vehicule.puissance_maximale} chevaux, ${vehicule.carrosserie}, ${vehicule.gamme}, ${vehicule.co2_g_km} g de CO2`;
-                    liste.appendChild(item);
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${vehicule.marque}</td>
+                        <td>${vehicule.modele_dossier}</td>
+                        <td>${vehicule.annee}</td>
+                        <td>${vehicule.carburant}</td>
+                        <td>${vehicule.puissance_maximale}</td>
+                        <td>${vehicule.carrosserie}</td>
+                        <td>${vehicule.gamme}</td>
+                        <td>${vehicule.co2_g_km}</td>
+                    `;
+                    tbody.appendChild(row);
                 });
-                resultatsContainer.appendChild(liste);
+
+                // Assembler le tableau
+                table.appendChild(thead);
+                table.appendChild(tbody);
+                resultatsContainer.appendChild(table);
             }
         });
     </script>

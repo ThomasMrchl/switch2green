@@ -27,8 +27,7 @@ function filtrerVehicules(vehicules, reponses) {
         );
     });
 
-    // Trier les résultats par consommation de CO2 (du plus petit au plus grand)
-    resultats.sort((a, b) => Number(a.co2_g_km) - Number(b.co2_g_km));
+    resultats.sort((a, b) => Number(a.co2_g_km) - Number(b.co2_g_km)); // Tri par CO2 croissant
 
     console.log('Véhicules correspondant aux critères (triés par CO2) :', resultats);
     return resultats;
@@ -75,7 +74,7 @@ function afficherResultats(resultats) {
         const liste = document.createElement('ul');
         resultats.forEach(vehicule => {
             const item = document.createElement('li');
-            item.textContent = `${vehicule.marque + " " + vehicule.modele_dossier} - ${vehicule.carburant}, ${vehicule.puissance_maximale} chevaux, ${vehicule.carrosserie}, ${vehicule.gamme}, ${vehicule.co2_g_km} g de CO2`;
+            item.textContent = `${vehicule.marque + " " + vehicule.modele_dossier + " de " + vehicule.annee} - ${vehicule.carburant}, ${vehicule.puissance_maximale} chevaux, ${vehicule.carrosserie}, ${vehicule.gamme}, ${vehicule.co2_g_km} g de CO2`;
             liste.appendChild(item);
         });
         resultatsContainer.appendChild(liste);
