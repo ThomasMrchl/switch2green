@@ -137,8 +137,8 @@
 
     <main>
         <section class="resultats">
-            <h1>Résultats de votre recherche</h1>
-            <p>Voici les véhicules qui correspondent à vos critères :</p>
+            <h1>Results from your criteria</h1>
+            <p>We are not associated to any car manufacturer, make sure to look for additional informations before considering buying those cars.</p>
             <div id="resultats" class="vehicules-grid">
                 <!-- Les résultats seront ajoutés ici dynamiquement -->
             </div>
@@ -183,11 +183,11 @@
                     card.innerHTML = `
                         <h3>${vehicule.marque} ${vehicule.modele_dossier}</h3>
                         <div class="vehicule-info">
-                            <p><span>Année:</span> ${vehicule.annee}</p>
-                            <p><span>Carburant:</span> ${vehicule.carburant}</p>
-                            <p><span>Puissance:</span> ${vehicule.puissance_maximale} ch</p>
-                            <p><span>Carrosserie:</span> ${vehicule.carrosserie}</p>
-                            <p><span>Gamme:</span> ${vehicule.gamme}</p>
+                            <p><span>Year:</span> ${vehicule.annee}</p>
+                            <p><span>Fuel:</span> ${vehicule.carburant}</p>
+                            <p><span>Power:</span> ${vehicule.puissance_maximale} ch</p>
+                            <p><span>Model:</span> ${vehicule.carrosserie}</p>
+                            <p><span>Range:</span> ${vehicule.gamme}</p>
                         </div>
                         <div class="co2-indicator">
                             <span class="co2-value">${vehicule.co2_g_km} g/km</span>
