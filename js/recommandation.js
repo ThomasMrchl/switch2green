@@ -2,9 +2,14 @@
 async function chargerVehicules() {
     try {
         console.log('Tentative de chargement des données des véhicules...');
-        const response = await fetch('../data/vehicules.json');
+        let response = await fetch('../data/vehicules.json');
         if (!response.ok) {
-            throw new Error(`Erreur HTTP : ${response.status}`);
+            console.warn(`Fichier vehicules.json introuvable ou inaccessible. Code HTTP : ${response.status}`);
+            console.log('Tentative de chargement du fichier de secours vehicules-test.json...');
+            response = await fetch('../data/vehicules-test.json');
+            if (!response.ok) {
+                throw new Error(`Erreur HTTP lors du chargement du fichier de secours : ${response.status}`);
+            }
         }
         const data = await response.json();
         console.log('Données des véhicules chargées avec succès :', data);

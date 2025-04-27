@@ -10,6 +10,14 @@
             background: linear-gradient(180deg, #ffffff 0%, #f1f8e9 100%);
         }
 
+        .error-message {
+            color: red;
+            font-size: 1.2rem;
+            text-align: center;
+            margin: 1rem 0;
+            display: none; /* Masqué par défaut */
+        }
+
         .hero {
             position: relative;
             min-height: 50vh;
@@ -176,6 +184,12 @@
     </div>
 
     <main>
+
+        <!-- Message d'erreur -->
+        <div id="error-message" class="error-message">
+            Attention : Le fichier <strong>data/vehicules.json</strong> est manquant. Ce site nécessite ce fichier pour fournir des recommandations efficaces. Vous pouvez suivre le README pour setup le projet.
+        </div>
+
         <section class="hero">
             <div class="hero-content">
                 <h1>Make an eco-friendly choice for your next vehicle</h1>
@@ -236,6 +250,20 @@
         fetch('./footer.html')
             .then(response => response.text())
             .then(data => document.getElementById('footer').innerHTML = data);
+
+        // Vérifier l'existence du fichier vehicules.json
+        fetch('../data/vehicules.json')
+            .then(response => {
+                if (!response.ok) {
+                    // Afficher le message d'erreur si le fichier est manquant
+                    document.getElementById('error-message').style.display = 'block';
+                }
+            })
+            .catch(error => {
+                // Afficher le message d'erreur en cas d'erreur réseau
+                document.getElementById('error-message').style.display = 'block';
+                console.error('Erreur lors de la vérification du fichier vehicules.json :', error);
+            });
     </script>
 </body>
 </html>

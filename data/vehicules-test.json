@@ -1,30 +1,112 @@
 [
     {
-        "nom": "Tesla Model 3",
-        "energie": "electrique",
-        "puissance": 283,
-        "gabarit": "berline",
-        "gamme": "superieur"
+        "marque": "Toyota",
+        "modele_dossier": "Prius",
+        "annee": 2022,
+        "carburant": "Hybride",
+        "puissance_maximale": 122,
+        "carrosserie": "Berline",
+        "gamme": "MOY-INFER",
+        "co2_g_km": 94,
+        "hybride": "Hybride"
     },
     {
-        "nom": "Renault Clio",
-        "energie": "essence",
-        "puissance": 90,
-        "gabarit": "berline",
-        "gamme": "moy-inferieur"
+        "marque": "Renault",
+        "modele_dossier": "Clio",
+        "annee": 2021,
+        "carburant": "Essence",
+        "puissance_maximale": 90,
+        "carrosserie": "Berline",
+        "gamme": "MOY-INFER",
+        "co2_g_km": 120,
+        "hybride": "Non"
     },
     {
-        "nom": "Toyota Prius",
-        "energie": "hybride",
-        "puissance": 122,
-        "gabarit": "berline",
-        "gamme": "moy-superieur"
+        "marque": "Tesla",
+        "modele_dossier": "Model 3",
+        "annee": 2023,
+        "carburant": "Électrique",
+        "puissance_maximale": 283,
+        "carrosserie": "Berline",
+        "gamme": "MOY-SUPER",
+        "co2_g_km": 0,
+        "hybride": "Non"
     },
     {
-        "nom": "BMW X5",
-        "energie": "diesel",
-        "puissance": 286,
-        "gabarit": "ts",
-        "gamme": "luxe"
+        "marque": "Peugeot",
+        "modele_dossier": "208",
+        "annee": 2020,
+        "carburant": "Diesel",
+        "puissance_maximale": 100,
+        "carrosserie": "Berline",
+        "gamme": "MOY-INFER",
+        "co2_g_km": 95,
+        "hybride": "Non"
+    },
+    {
+        "marque": "BMW",
+        "modele_dossier": "X5",
+        "annee": 2022,
+        "carburant": "Hybride",
+        "puissance_maximale": 394,
+        "carrosserie": "TS TERRAINS/CHEMINS",
+        "gamme": "LUXE",
+        "co2_g_km": 49,
+        "hybride": "Hybride"
+    },
+    {
+        "marque": "Volkswagen",
+        "modele_dossier": "Golf",
+        "annee": 2019,
+        "carburant": "Essence",
+        "puissance_maximale": 150,
+        "carrosserie": "Berline",
+        "gamme": "MOY-SUPER",
+        "co2_g_km": 110,
+        "hybride": "Non"
+    },
+    {
+        "marque": "Hyundai",
+        "modele_dossier": "Ioniq",
+        "annee": 2021,
+        "carburant": "Hybride",
+        "puissance_maximale": 141,
+        "carrosserie": "Berline",
+        "gamme": "MOY-INFER",
+        "co2_g_km": 79,
+        "hybride": "Hybride"
+    },
+    {
+        "marque": "Ford",
+        "modele_dossier": "Focus",
+        "annee": 2020,
+        "carburant": "Diesel",
+        "puissance_maximale": 120,
+        "carrosserie": "Berline",
+        "gamme": "MOY-SUPER",
+        "co2_g_km": 105,
+        "hybride": "Non"
+    },
+    {
+        "marque": "Audi",
+        "modele_dossier": "A3",
+        "annee": 2022,
+        "carburant": "Essence",
+        "puissance_maximale": 150,
+        "carrosserie": "Berline",
+        "gamme": "Premium",
+        "co2_g_km": 115,
+        "hybride": "Non"
+    },
+    {
+        "marque": "Nissan",
+        "modele_dossier": "Leaf",
+        "annee": 2023,
+        "carburant": "Électrique",
+        "puissance_maximale": 150,
+        "carrosserie": "Berline",
+        "gamme": "MOY-INFER",
+        "co2_g_km": 0,
+        "hybride": "Non"
     }
 ]
