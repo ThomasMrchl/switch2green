@@ -41,3 +41,4 @@ Feel free to contribute to this project by adding new features or improving exis
 
 ## License
 This project is open-source and available for use and modification.
+It was developed by 3 EFREI students in a Green IT project : Noah HEMON, Maxime TANG and Thomas MARCHAL
